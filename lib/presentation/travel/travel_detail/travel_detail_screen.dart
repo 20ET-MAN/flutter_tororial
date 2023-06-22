@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_demo_proj/generated/assets.dart';
@@ -25,25 +27,118 @@ class TravelDetailScreen extends StatelessWidget {
           headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
             return <Widget>[
               SliverAppBar(
-                expandedHeight: 397,
-                leading: Container(
-                  width: 16,
-                  height: 16,
-                  padding:
-                      const EdgeInsets.symmetric(vertical: 8, horizontal: 12),
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      color: const Color(0xFFF8F8F8)),
-                  child: SvgPicture.asset(
-                    Assets.iconsVector,
-                    width: 14,
-                    height: 7,
+                automaticallyImplyLeading: false,
+                leading: GestureDetector(
+                  onTap: () {
+                    context.router.pop();
+                  },
+                  child: Container(
+                    width: 32,
+                    height: 32,
+                    margin: const EdgeInsets.only(left: 24, top: 12, bottom: 12),
+                    padding: const EdgeInsets.symmetric(
+                        vertical: 8, horizontal: 12),
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        color: const Color(0xFFF8F8F8)),
+                    child: SvgPicture.asset(
+                      Assets.iconsVector,
+                      width: 14,
+                      height: 7,
+                    ),
                   ),
                 ),
+                expandedHeight: 397,
                 flexibleSpace: FlexibleSpaceBar(
-                  background: Image.asset(
-                    Assets.imagesImageAppbar,
-                    fit: BoxFit.fill,
+                  collapseMode: CollapseMode.parallax,
+                  background: Center(
+                    child: Stack(
+                      alignment: Alignment.center,
+                      children: [
+                        Image.asset(
+                          Assets.imagesImageAppbar,
+                        ),
+                        SizedBox(
+                          width: double.infinity,
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Container(
+                                width: 170,
+                                height: 44,
+                                margin: const EdgeInsets.only(left: 24, bottom: 24),
+                                padding: const EdgeInsets.all(4),
+                                decoration: BoxDecoration(
+                                    color: const Color(0xFF5D5252).withOpacity(0.5),
+                                    borderRadius: BorderRadius.circular(50)),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: [
+                                    CircleAvatar(
+                                      radius: 18,
+                                      child: ClipOval(
+                                        child: Image.asset(
+                                          Assets.imagesSalavatYulaev,
+                                          fit: BoxFit.fill,
+                                          width: 36,
+                                          height: 36,
+                                        ),
+                                      ),
+                                    ),
+                                    const SizedBox(width: 8),
+                                    const Column(
+                                      children: [
+                                        Text(
+                                          'Azat Khabirov ',
+                                          style: TextStyle(
+                                              fontSize: 13,
+                                              color: Colors.white,
+                                              fontWeight: FontWeight.w500),
+                                        ),
+                                        Text(
+                                          'Location guide',
+                                          style: TextStyle(
+                                            fontSize: 12,
+                                            color: Colors.white,
+                                          ),
+                                        ),
+                                      ],
+                                    )
+                                  ],
+                                ),
+                              ),
+                              const SizedBox(height: 20)
+                            ],
+                          ),
+                        ),
+                        Column(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              crossAxisAlignment: CrossAxisAlignment.end,
+                              children: [
+                                Container(
+                                  padding: const EdgeInsets.all(7),
+                                  decoration: BoxDecoration(
+                                      color: Colors.white,
+                                      borderRadius: BorderRadius.circular(18)
+                                  ),
+                                  child: SvgPicture.asset(
+                                    Assets.iconsHeath,
+                                    width: 18,
+                                    height: 16,
+                                  ),
+                                ),
+                                const SizedBox(width: 20)
+                              ],
+                            ),
+                            const SizedBox(height: 10)
+                          ],
+                        )
+                      ],
+                    ),
                   ),
                 ),
               ),
@@ -56,7 +151,7 @@ class TravelDetailScreen extends StatelessWidget {
                 child: ListView(
                   children: [
                     const Text(
-                      'Shulgaт-Tash cave ',
+                      'Shulgaт-Tash cae ',
                       style:
                           TextStyle(fontWeight: FontWeight.w500, fontSize: 28),
                     ),
